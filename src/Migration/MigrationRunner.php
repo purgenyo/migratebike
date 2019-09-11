@@ -65,8 +65,9 @@ class MigrationRunner
 
     public function generate(): IMigration
     {
-        $data = $this->getGenerator()->generate($this->_config);
-        $this->store($data);
+        $migration = $this->getGenerator()->generate($this->_config);
+        $this->store($migration);
+        $this->outputMigrationInfo($migration);
     }
 
     private function store($migration)
@@ -76,13 +77,20 @@ class MigrationRunner
 
     public function migrate()
     {
-        $this->processMigrations($this->getStorage()->getActual());
+        $this->upMigrations($this->getStorage()->getActual());
     }
 
-    private function processMigrations(IMigration ...$migrations)
+    private function upMigrations(IMigration ...$migrations)
     {
         foreach ($migrations as $migration) {
             $migration->up();
+        }
+    }
+
+    private function downMigrations(IMigration ...$migrations)
+    {
+        foreach ($migrations as $migration) {
+            $migration->down();
         }
     }
 

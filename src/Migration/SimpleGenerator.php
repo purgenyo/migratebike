@@ -11,5 +11,6 @@ class SimpleGenerator implements Generator
      */
     public function generate(\IConfig $config): IMigration
     {
+
     }
 }

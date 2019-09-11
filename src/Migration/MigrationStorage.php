@@ -9,9 +9,9 @@ interface MigrationStorage
 
     /**
      * add migration to storage
-     * @param $data
+     * @param IMigration $migration
      */
-    public function add($data);
+    public function add( IMigration $migration );
 
     /**
      * @return array

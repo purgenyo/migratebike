@@ -11,5 +11,5 @@ interface Generator
      * @param \IConfig $config
      * @return mixed
      */
-    public function generate(\IConfig $config);
+    public function generate(\IConfig $config): IMigration;
 }
